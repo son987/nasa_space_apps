@@ -8,11 +8,13 @@ import joblib
 import seaborn as sns
 
 # Load dataset
-co2_data = pd.read_csv('C:\\Users\\ashwi\\OneDrive\\Desktop\\nasa datas\\co2.csv')
-
-# Preprocess dataset
-print("CO2 Dataset Loaded Successfully")
-print(co2_data.info())
+try:
+    co2_data = pd.read_csv('C:\\Users\\ashwi\\OneDrive\\Desktop\\nasa_datas\\co2.csv')
+    print("CO2 Dataset Loaded Successfully")
+    print(co2_data.info())
+except FileNotFoundError:
+    print("Error: CO2 dataset file not found. Please check the file path.")
+    exit()
 
 # Check for missing values
 print("Missing values in CO2 dataset before preprocessing:")
@@ -77,6 +79,7 @@ sns.barplot(x=importances[indices], y=feature_names[indices], palette='viridis')
 plt.title('Feature Importance')
 plt.xlabel('Importance Score')
 plt.ylabel('Features')
+plt.tight_layout()  # Add this for better layout
 plt.show()
 
 # Save the model
